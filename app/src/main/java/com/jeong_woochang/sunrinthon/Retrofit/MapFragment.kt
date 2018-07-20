@@ -9,7 +9,6 @@ import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.os.Bundle
-import android.speech.tts.TextToSpeech
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
@@ -17,7 +16,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.google.android.gms.common.api.ResolvableApiException
 import com.google.android.gms.location.*
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -39,16 +37,12 @@ import java.util.*
  * Created by shimhg02 on 2018-07-20.
  */
 
-class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener, TextToSpeech.OnInitListener {
-    override fun onInit(status: Int) {
-
-    }
+class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
 
     private lateinit var locationCallback: LocationCallback
     private lateinit var locationRequest: LocationRequest
     private var locationUpdateState = false
-    private var tts: TextToSpeech? = null
 
     companion object {
         private const val LOCATION_PERMISSION_REQUEST_CODE = 1
@@ -66,11 +60,11 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
         val mapFragment: SupportMapFragment? = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(this)
 
-        /*Client.retrofitService.getPlace().enqueue(object : Callback<ArrayList<LocationRepo>> {
+
+        Client.retrofitService.getPlace().enqueue(object : Callback<ArrayList<LocationRepo>> {
 
             override fun onResponse(call: Call<ArrayList<LocationRepo>>?, response: Response<ArrayList<LocationRepo>>?) {
                 val repo = response!!.body()
-                //Toast.makeText(context,"성공",Toast.LENGTH_SHORT)
 
                 when (response.code()) {
                     200 -> {
@@ -87,7 +81,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
             override fun onFailure(call: Call<ArrayList<LocationRepo>>?, t: Throwable?) {
                 Log.v("FngTest", "fail!!")
             }
-        }*/
+        })
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity!!)
 
@@ -168,7 +162,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
 
     private fun startLocationUpdates() {
 
-        /*if (ActivityCompat.checkSelfPermission(activity!!,
+        if (ActivityCompat.checkSelfPermission(activity!!,
                         android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(activity!!,
                     arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
@@ -176,7 +170,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
             return
         }
 
-        fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, null *//* Looper *//*)*/
+        fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, null /* Looper */)
     }
 
     private fun createLocationRequest() {
