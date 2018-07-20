@@ -10,6 +10,8 @@ import android.view.View
 import android.widget.Toast
 import com.jeong_woochang.sunrinthon.Retrofit.MapFragment
 import com.jeong_woochang.sunrinthon.Retrofit.FragmentC2C
+import com.jeong_woochang.sunrinthon.Retrofit.FragmentPlay
+import com.jeong_woochang.sunrinthon.Retrofit.FragmentTip
 
 /**
  * Created by jeong-woochang on 2018. 7. 20..

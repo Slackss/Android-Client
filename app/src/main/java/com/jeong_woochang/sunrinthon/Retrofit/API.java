@@ -19,11 +19,11 @@ public interface API {
     @GET("/place")
     Call<ArrayList<LocationRepo>> getPlace();
 
-    @POST("/user/signin")
+    @POST("/auth/signin")
     @FormUrlEncoded
     Call<ResponseBody> logIn(@Field("id") String id, @Field("pw") String pw);
 
-    @POST("/user/signup")
+    @POST("/auth/signup")
     @FormUrlEncoded
     Call<ResponseBody> logUp(@Field("name") String name, @Field("id") String id, @Field("pw") String pw);
 
