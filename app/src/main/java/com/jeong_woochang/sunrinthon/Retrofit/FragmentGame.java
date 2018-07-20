@@ -45,11 +45,9 @@ public class FragmentGame extends Fragment {
         Client.INSTANCE.getRetrofitService().getplayList().enqueue(new retrofit2.Callback<ArrayList<playRepo>>() {
             @Override
             public void onResponse(Call<ArrayList<playRepo>> call, Response<ArrayList<playRepo>> response) {
-                if (response.code()==200){
-                    for(int i=0;i<2;i++){
-                        System.out.println(response.body().get(i).name +"$@$@$"+ response.body().get(i).content);
-                        tipRecyclerAdapter.addItem(response.body().get(i).name, response.body().get(i).content, "");
-                    }
+                if (response.isSuccessful()){
+                    for(int i=0;i<response.body().size();i++)
+                        tipRecyclerAdapter.addItem(response.body().get(i).name,response.body().get(i).content,"game");
                 }
                 tipRecyclerAdapter.notifyDataSetChanged();
             }

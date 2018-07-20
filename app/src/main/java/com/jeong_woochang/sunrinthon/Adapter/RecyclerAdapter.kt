@@ -1,7 +1,10 @@
 package com.jeong_woochang.sunrinthon.Adapter
 
 
+import android.content.Context
+import android.speech.tts.TextToSpeech
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.jeong_woochang.sunrinthon.R
@@ -11,7 +14,8 @@ import kotlinx.android.synthetic.main.item_c2c.view.*
 import java.util.*
 
 
-internal class RecyclerAdapter(private val dataList: ArrayList<Data>) : RecyclerView.Adapter<RecyclerAdapter.Holder>() {
+internal class RecyclerAdapter(private val dataList: ArrayList<Data>, private val context: Context) : RecyclerView.Adapter<RecyclerAdapter.Holder>(), TextToSpeech.OnInitListener {
+    private var tts: TextToSpeech? = TextToSpeech(context, this)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = Holder(parent)
 
@@ -25,12 +29,50 @@ internal class RecyclerAdapter(private val dataList: ArrayList<Data>) : Recycler
             contentTv.text = data.date
             Picasso.with(context)
                     .load(data.img)
-                    .into(imageIcon);
+                    .into(imageIcon)
+            writeTv.setOnLongClickListener {
+                speakOut(writeTv.text.toString()+" "+contentTv.text.toString()+" "+dateTv.text.toString())
+                return@setOnLongClickListener true
+            }
+
+            dateTv.setOnLongClickListener {
+                speakOut(writeTv.text.toString()+" "+contentTv.text.toString()+" "+dateTv.text.toString())
+                return@setOnLongClickListener true
+            }
+
+            contentTv.setOnLongClickListener {
+                speakOut(writeTv.text.toString()+" "+contentTv.text.toString()+" "+dateTv.text.toString())
+                return@setOnLongClickListener true
+            }
+
+            imageIcon.setOnLongClickListener {
+                speakOut(writeTv.text.toString()+" "+contentTv.text.toString()+" "+dateTv.text.toString())
+                return@setOnLongClickListener true
+            }
         }
     }
-    override fun getItemCount(): Int = dataList.size
 
+    override fun getItemCount(): Int = dataList.size
     inner class Holder(parent: ViewGroup)
         : RecyclerView.ViewHolder(LayoutInflater.from(parent.context)
             .inflate(R.layout.item_c2c, parent, false))
+
+    override fun onInit(status: Int) {
+        if (status == TextToSpeech.SUCCESS) {
+            // set US English as language for tts
+            val result = tts!!.setLanguage(Locale.KOREA)
+
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                Log.e("TTS", "The Language specified is not supported!")
+            } else {
+            }
+
+        } else {
+            Log.e("TTS", "Initilization Failed!")
+        }
+    }
+
+    private fun speakOut(text:String) {
+        tts!!.speak(text, TextToSpeech.QUEUE_FLUSH, null,"")
+    }
 }

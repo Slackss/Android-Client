@@ -57,6 +57,7 @@
                             android:id="@+id/name_tv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:inputType="textPersonName"
                             android:hint="Name" />
                     </android.support.design.widget.TextInputLayout>
 
@@ -69,6 +70,7 @@
                             android:id="@+id/id_tv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:inputType="textEmailAddress"
                             android:hint="ID" />
                     </android.support.design.widget.TextInputLayout>
 
@@ -83,6 +85,7 @@
                             android:id="@+id/pw_tv"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:inputType="textPassword"
                             android:hint="PW" />
                     </android.support.design.widget.TextInputLayout>
 

@@ -47,7 +47,7 @@ class LoginActivity : BaseActivity(), TextToSpeech.OnInitListener {
                         200 -> {
                             finish()
                             startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                            speakOut("로그인 성공. 지금은 메인페이지입니다")
+                            speakOut("로그인을 성공헸습니다. 지금은 메인페이지입니다")
                         }
                         405 -> {
                             Toast.makeText(this@LoginActivity, "로그인 실패 : 아이디나 비번이 올바르지 않습니다", Toast.LENGTH_LONG).show()

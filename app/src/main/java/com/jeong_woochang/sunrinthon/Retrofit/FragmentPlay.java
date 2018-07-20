@@ -30,8 +30,9 @@ public class FragmentPlay extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         LinearLayout layout=(LinearLayout)inflater.inflate(R.layout.fragment_play,container,false);
-        ViewPager viewPager=(ViewPager)layout.findViewById(R.id.viewpager);
+        final ViewPager viewPager=(ViewPager)layout.findViewById(R.id.viewpager);
         TabLayout tabLayout = (TabLayout) layout.findViewById(R.id.tab);
+        //tabLayout.setupWithViewPager(viewPager);
         tabLayout.addTab(tabLayout.newTab().setText("스포츠"));
         tabLayout.addTab(tabLayout.newTab().setText("게임"));
         tabLayout.addTab(tabLayout.newTab().setText("기타"));
@@ -40,6 +41,28 @@ public class FragmentPlay extends Fragment {
         TabPagerAdapter pagerAdapter = new TabPagerAdapter(((FragmentActivity)getContext()).getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pagerAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                if (tab.getPosition() != viewPager.getCurrentItem()) {
+                    viewPager.setCurrentItem(tab.getPosition());
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                if (tab.getPosition() != viewPager.getCurrentItem()) {
+                    viewPager.setCurrentItem(tab.getPosition());
+                }
+            }
+        });
 
         return layout;
     }

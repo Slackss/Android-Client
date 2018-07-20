@@ -1,17 +1,20 @@
 package com.jeong_woochang.sunrinthon
 
 import android.annotation.SuppressLint
+import android.speech.tts.TextToSpeech
 import android.support.design.widget.TabLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.view.ViewPager
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.jeong_woochang.sunrinthon.Retrofit.MapFragment
 import com.jeong_woochang.sunrinthon.Retrofit.FragmentC2C
 import com.jeong_woochang.sunrinthon.Retrofit.FragmentPlay
 import com.jeong_woochang.sunrinthon.Retrofit.FragmentTip
+import java.util.*
 
 /**
  * Created by jeong-woochang on 2018. 7. 20..
@@ -24,6 +27,7 @@ class MainActivity:BaseActivity(){
     private lateinit var toast: Toast
     private var backKeyPressedTime: Long = 200
     private var mViewPager: ViewPager? = null
+
 
     @SuppressLint("ShowToast")
     override fun onCreate() {
@@ -42,7 +46,7 @@ class MainActivity:BaseActivity(){
         tabLayout.getTabAt(0)!!.text = "sns"
         tabLayout.getTabAt(1)!!.text = "주변 시설"
         tabLayout.getTabAt(2)!!.text = "Tip!"
-        tabLayout.getTabAt(3)!!.text = "유흥"
+        tabLayout.getTabAt(3)!!.text = "Fun"
 
         mViewPager!!.addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(tabLayout))
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -77,14 +81,19 @@ class MainActivity:BaseActivity(){
         override fun getItem(position: Int): Fragment? {
 
             return when (position) {
-                0 ->
+                0 -> {
                     FragmentC2C()
-                1 ->
+                }
+                1 -> {
                     MapFragment()
-                2 ->
+                    //FragmentC2C()
+                }
+                2 -> {
                     FragmentTip()
-                3 ->
+                }
+                3 -> {
                     FragmentPlay()
+                }
                 else ->
                     null
             }

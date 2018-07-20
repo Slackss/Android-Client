@@ -13,6 +13,6 @@ public class LocationRepo {
     @SerializedName("lng")
     String lng = "";
 
-    @SerializedName("placeName")
+    @SerializedName("placename")
     String placeName = "";
 }
