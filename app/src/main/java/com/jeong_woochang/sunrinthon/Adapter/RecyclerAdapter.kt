@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.jeong_woochang.sunrinthon.R
 import com.jeong_woochang.sunrinthon.Retrofit.Data
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_c2c.view.*
 import java.util.*
 
@@ -22,7 +23,9 @@ internal class RecyclerAdapter(private val dataList: ArrayList<Data>) : Recycler
             writeTv.text = data.writer
             dateTv.text = data.content
             contentTv.text = data.date
-
+            Picasso.with(context)
+                    .load(data.img)
+                    .into(imageIcon);
         }
     }
     override fun getItemCount(): Int = dataList.size

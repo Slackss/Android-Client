@@ -13,6 +13,13 @@ import android.widget.LinearLayout;
 
 import com.jeong_woochang.sunrinthon.R;
 
+import java.util.ArrayList;
+
+import javax.security.auth.callback.Callback;
+
+import retrofit2.Call;
+import retrofit2.Response;
+
 /**
  * Created by jeong-woochang on 2018. 7. 20..
  */
@@ -27,14 +34,31 @@ public class FragmentGame extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        PlayRecyclerAdapter tipRecyclerAdapter=new PlayRecyclerAdapter();
+        final PlayRecyclerAdapter tipRecyclerAdapter=new PlayRecyclerAdapter(getContext());
         LinearLayout layout=(LinearLayout)inflater.inflate(R.layout.fragment_game,container,false);
         RecyclerView recyclerView=(RecyclerView)layout.findViewById(R.id.game_recyclerView);
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(llm);
         recyclerView.setAdapter(tipRecyclerAdapter);
-        tipRecyclerAdapter.addItem("Title", "Content");
+
+        Client.INSTANCE.getRetrofitService().getplayList().enqueue(new retrofit2.Callback<ArrayList<playRepo>>() {
+            @Override
+            public void onResponse(Call<ArrayList<playRepo>> call, Response<ArrayList<playRepo>> response) {
+                if (response.code()==200){
+                    for(int i=0;i<2;i++){
+                        System.out.println(response.body().get(i).name +"$@$@$"+ response.body().get(i).content);
+                        tipRecyclerAdapter.addItem(response.body().get(i).name, response.body().get(i).content, "");
+                    }
+                }
+                tipRecyclerAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<playRepo>> call, Throwable t) {
+
+            }
+        });
         return layout;
     }
 }

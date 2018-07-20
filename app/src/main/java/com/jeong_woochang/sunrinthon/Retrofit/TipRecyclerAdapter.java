@@ -1,13 +1,16 @@
 package com.jeong_woochang.sunrinthon.Retrofit;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.jeong_woochang.sunrinthon.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -19,7 +22,11 @@ class TipRecyclerAdapter extends RecyclerView.Adapter<TipRecyclerAdapter.ViewHol
 
     ArrayList<TipData> arrayList=new ArrayList<>();
 
-    public TipRecyclerAdapter(){}
+    Context context;
+
+    public TipRecyclerAdapter(Context _context){
+        context=_context;
+    }
 
     @NonNull
     @Override
@@ -32,10 +39,14 @@ class TipRecyclerAdapter extends RecyclerView.Adapter<TipRecyclerAdapter.ViewHol
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         TipData tmp=arrayList.get(position);
+        ImageView img=(ImageView)holder.layout.findViewById(R.id.imageIcon);
         TextView title=(TextView)holder.layout.findViewById(R.id.title);
         TextView content=(TextView)holder.layout.findViewById(R.id.content);
         title.setText(tmp.getTitle());
         content.setText(tmp.getContent());
+        Picasso.with(context)
+                .load(tmp.getImg())
+                .into(img);
     }
 
     @Override
@@ -53,10 +64,11 @@ class TipRecyclerAdapter extends RecyclerView.Adapter<TipRecyclerAdapter.ViewHol
         }
     }
 
-    public void addItem(String title, String content){
+    public void addItem(String title, String content, String img){
         TipData data=new TipData();
         data.setTitle(title);
         data.setContent(content);
+        data.setImg(img);
         arrayList.add(data);
     }
 }

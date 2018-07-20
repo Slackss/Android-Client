@@ -36,6 +36,7 @@ dependencies {
     implementation 'gun0912.ted:tedpermission:2.1.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation 'com.squareup.picasso:picasso:2.3.3'
 }
 repositories {
     mavenCentral()

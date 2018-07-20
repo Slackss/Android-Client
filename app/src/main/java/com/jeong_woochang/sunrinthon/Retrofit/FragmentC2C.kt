@@ -27,7 +27,7 @@ class FragmentC2C : Fragment(){
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_c2c, container, false)
         view.fab.setOnClickListener {
-            items += Data("글 제목", "작성자", "1분 전", "질문있습니다!")
+            items += Data("글 제목", "작성자", "1분 전", "질문있습니다!", "http://18.222.191.92:3000/profile.png")
             recyclerView!!.adapter.notifyDataSetChanged()
         }
         recyclerView = view!!.findViewById(R.id.recyclerView)
@@ -43,7 +43,7 @@ class FragmentC2C : Fragment(){
                 when (response.code()) {
                     200 -> {
                         repo!!.indices.forEach {
-                            items += Data(repo[it].id, repo[it].writer, repo[it].date, repo[it].content)
+                            items += Data(repo[it].id, repo[it].writer, repo[it].date, repo[it].content, repo[it].img)
                             recyclerView!!.adapter.notifyDataSetChanged()
                         }
                     }

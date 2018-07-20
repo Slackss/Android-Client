@@ -5,6 +5,7 @@ package com.jeong_woochang.sunrinthon.Retrofit;
  */
 
 public class PlayData {
+    String img;
     String title;
     String content;
 
@@ -14,6 +15,14 @@ public class PlayData {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public String getContent() {

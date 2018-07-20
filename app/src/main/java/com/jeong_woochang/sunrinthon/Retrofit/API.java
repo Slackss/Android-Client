@@ -30,9 +30,15 @@ public interface API {
     @GET("/sns")
     Call<ArrayList<snsRepo>> getsnsList();
 
+    @GET("/tip")
+    Call<ArrayList<tipRepo>> gettipList();
+
+    @GET("/sports")
+    Call<ArrayList<playRepo>> getplayList();
+
     @POST("/sns")
     @FormUrlEncoded
-    Call<Void> writesns(@Field("writer") String writer, @Field("content") String content);
+    Call<Void> writesns(@Field("writer") String writer, @Field("content") String content, @Field("img") String img);
 
     @GET("/sns/{id}")
     Call<Void> getsnsDetail(@Path("id") String id);

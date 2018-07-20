@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryDark"
         android:minHeight="?attr/actionBarSize"
-        app:titleTextColor="#000000"
+        app:titleTextColor="#ffffff"
         android:elevation="0dp"
         >
         <ImageView
@@ -26,6 +26,8 @@
             android:layout_height="40dp"
             android:text="Able"
             android:textSize="30dp"
+            android:textColor="#fff"
+            android:textStyle="bold"
             />
 
     </android.support.v7.widget.Toolbar>
