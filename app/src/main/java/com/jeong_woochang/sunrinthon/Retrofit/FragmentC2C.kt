@@ -59,8 +59,8 @@ class FragmentC2C : Fragment(),TextToSpeech.OnInitListener{
                 when (response.code()) {
                     200 -> {
                         repo!!.indices.forEach {
-                            //items += Data(repo[it].id, repo[it].writer, repo[it].date, repo[it].content, repo[it].img)
-
+                            items += Data(repo[it].id, repo[it].writer, repo[it].date, repo[it].content, repo[it].img)
+                            adapter!!.notifyDataSetChanged()
                         }
                     }
                 }
