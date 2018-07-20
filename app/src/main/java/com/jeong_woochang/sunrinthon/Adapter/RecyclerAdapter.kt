@@ -2,13 +2,18 @@ package com.jeong_woochang.sunrinthon.Adapter
 
 
 import android.content.Context
+import android.content.Intent
 import android.speech.tts.TextToSpeech
+import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.jeong_woochang.sunrinthon.ContentActivity
+import com.jeong_woochang.sunrinthon.MainActivity
 import com.jeong_woochang.sunrinthon.R
 import com.jeong_woochang.sunrinthon.Retrofit.Data
+import com.jeong_woochang.sunrinthon.WriteActivity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_c2c.view.*
 import java.util.*
@@ -35,9 +40,19 @@ internal class RecyclerAdapter(private val dataList: ArrayList<Data>, private va
                 return@setOnLongClickListener true
             }
 
+            writeTv.setOnClickListener {
+                var intent=Intent(context, ContentActivity::class.java)
+                intent.putExtra("title",writeTv.text.toString())
+                intent.putExtra("content",dateTv.text.toString())
+            }
+
             dateTv.setOnLongClickListener {
                 speakOut(writeTv.text.toString()+" "+contentTv.text.toString()+" "+dateTv.text.toString())
                 return@setOnLongClickListener true
+            }
+
+            dateTv.setOnClickListener {
+                speakOut(writeTv.text.toString()+" "+contentTv.text.toString()+" "+dateTv.text.toString())
             }
 
             contentTv.setOnLongClickListener {
@@ -45,9 +60,17 @@ internal class RecyclerAdapter(private val dataList: ArrayList<Data>, private va
                 return@setOnLongClickListener true
             }
 
+            contentTv.setOnClickListener {
+                speakOut(writeTv.text.toString()+" "+contentTv.text.toString()+" "+dateTv.text.toString())
+            }
+
             imageIcon.setOnLongClickListener {
                 speakOut(writeTv.text.toString()+" "+contentTv.text.toString()+" "+dateTv.text.toString())
                 return@setOnLongClickListener true
+            }
+
+            imageIcon.setOnClickListener {
+                speakOut(writeTv.text.toString()+" "+contentTv.text.toString()+" "+dateTv.text.toString())
             }
         }
     }

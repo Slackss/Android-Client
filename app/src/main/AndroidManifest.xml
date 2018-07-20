@@ -18,23 +18,25 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCR1fDuBuZ8BFG6oSkKSPZXupnKNCEED4w" />
 
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
         <activity
             android:name="com.gun0912.tedpermission.TedPermissionActivity"
             android:configChanges="mcc|mnc|locale|keyboard|keyboardHidden|screenLayout|fontScale|uiMode|orientation|screenSize|layoutDirection"
-            android:screenOrientation="unspecified"
+            android:screenOrientation="sensor"
             android:theme="@style/Theme.Transparent.Permission"
             tools:replace="android:screenOrientation" />
         <activity android:name=".BaseActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".SignActivity" />
+        <activity android:name=".WriteActivity" />
+        <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignActivity" />
-        <activity android:name=".WriteActivity"></activity>
+        <activity android:name=".ContentActivity"></activity>
     </application>
 
 </manifest>

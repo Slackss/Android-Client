@@ -63,11 +63,42 @@ class LoginActivity : BaseActivity(), TextToSpeech.OnInitListener {
                 override fun onFailure(call: Call<Void>?, t: Throwable?) {
 
                 }
-
-
             })
+        }
 
+        logo_text.setOnLongClickListener {
+            speakOut("Able")
+            return@setOnLongClickListener true
+        }
 
+        id_tv.setOnLongClickListener {
+            speakOut("ID")
+            return@setOnLongClickListener true
+        }
+
+        find_id.setOnLongClickListener {
+            speakOut("ID 찾기")
+            return@setOnLongClickListener true
+        }
+
+        pw_tv.setOnLongClickListener {
+            speakOut("비밀번호")
+            return@setOnLongClickListener true
+        }
+
+        find_pw.setOnLongClickListener {
+            speakOut("비밀번호 찾기")
+            return@setOnLongClickListener true
+        }
+
+        signup_go.setOnLongClickListener {
+            speakOut("회원가입")
+            return@setOnLongClickListener true
+        }
+
+        login_btn.setOnLongClickListener {
+            speakOut("로그인")
+            return@setOnLongClickListener true
         }
 
         signup_go.setOnClickListener { startActivity(Intent(this@LoginActivity, SignActivity::class.java)) }

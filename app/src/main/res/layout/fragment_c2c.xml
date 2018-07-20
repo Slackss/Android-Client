@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         app:fabSize="normal"
         android:layout_gravity="bottom|end"
+        android:src="@drawable/ic_create_white_24dp"
         android:layout_margin="10dp"/>
 
 </FrameLayout>

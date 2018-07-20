@@ -53,6 +53,23 @@ class SignActivity : BaseActivity(), TextToSpeech.OnInitListener {
 
             })
         }
+
+        id_tv.setOnLongClickListener {
+            speakOut("Able")
+            return@setOnLongClickListener true
+        }
+        pw_tv.setOnLongClickListener {
+            speakOut("Able")
+            return@setOnLongClickListener true
+        }
+        name_tv.setOnLongClickListener {
+            speakOut("Able")
+            return@setOnLongClickListener true
+        }
+        sign_btn.setOnLongClickListener {
+            speakOut("Able")
+            return@setOnLongClickListener true
+        }
     }
 
     override fun onInit(status: Int) {

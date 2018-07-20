@@ -86,7 +86,6 @@ class MainActivity:BaseActivity(){
                 }
                 1 -> {
                     MapFragment()
-                    //FragmentC2C()
                 }
                 2 -> {
                     FragmentTip()

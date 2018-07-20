@@ -173,7 +173,7 @@ class MapFragment : Fragment(), OnMapReadyCallback, GoogleMap.OnMarkerClickListe
             ActivityCompat.requestPermissions(activity!!,
                     arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),
                     LOCATION_PERMISSION_REQUEST_CODE)
-            return
+            //return
         }
 
         fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, null /* Looper */)
