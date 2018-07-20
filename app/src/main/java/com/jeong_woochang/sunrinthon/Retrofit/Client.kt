@@ -14,10 +14,10 @@ object Client {
     init {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
-        val logger = OkHttpClient.Builder().addInterceptor(interceptor).readTimeout(20, TimeUnit.SECONDS).writeTimeout(20, TimeUnit.SECONDS).build()
+        val logger = OkHttpClient.Builder().addInterceptor(interceptor).readTimeout(2000, TimeUnit.SECONDS).writeTimeout(2000, TimeUnit.SECONDS).build()
 
         val retrofit = Retrofit.Builder()
-                .baseUrl("https://github.com/")
+                .baseUrl("http://18.222.191.92:3000")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(logger)
                 .build()

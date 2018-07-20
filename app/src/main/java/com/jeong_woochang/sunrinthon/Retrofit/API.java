@@ -21,23 +21,23 @@ public interface API {
 
     @POST("/auth/signin")
     @FormUrlEncoded
-    Call<ResponseBody> logIn(@Field("id") String id, @Field("pw") String pw);
+    Call<Void> logIn(@Field("id") String id, @Field("pw") String pw);
 
     @POST("/auth/signup")
     @FormUrlEncoded
-    Call<ResponseBody> logUp(@Field("name") String name, @Field("id") String id, @Field("pw") String pw);
+    Call<Void> logUp(@Field("name") String name, @Field("id") String id, @Field("pw") String pw);
 
     @GET("/sns")
     Call<ArrayList<snsRepo>> getsnsList();
 
     @POST("/sns")
     @FormUrlEncoded
-    Call<ResponseBody> writesns(@Field("writer") String writer, @Field("content") String content);
+    Call<Void> writesns(@Field("writer") String writer, @Field("content") String content);
 
     @GET("/sns/{id}")
-    Call<ResponseBody> getsnsDetail(@Path("id") String id);
+    Call<Void> getsnsDetail(@Path("id") String id);
 
     @POST("/sns/{id}")
     @FormUrlEncoded
-    Call<ResponseBody> writeAnswer(@Path("id") String id, @Field("writer") String writer, @Field("content") String content);
+    Call<Void> writeAnswer(@Path("id") String id, @Field("writer") String writer, @Field("content") String content);
 }
